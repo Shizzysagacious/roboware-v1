@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Profile - Roboware</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .profile-container h3 {
+            color: #333;
+        }
+
+        .balance {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .sales-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .sales-table th, .sales-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .sales-table th {
+            background-color: #4a90e2;
+            color: #fff;
+        }
+
+        .withdraw-button {
+            margin-top: 20px;
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .withdraw-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Developer Profile</h1>
+    </header>
+    <div class="profile-container">
+        <h3>Welcome, [Developer Name]</h3>
+        <p>Your current balance: <span class="balance">$150.00</span></p>
+
+        <h3>Sales Overview</h3>
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th>Code Title</th>
+                    <th>Purchaser</th>
+                    <th>Quantity</th>
+                    <th>Earned</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Advanced AI Script</td>
+                    <td>john_doe@gmail.com</td>
+                    <td>3</td>
+                    <td>$45.00</td>
+                </tr>
+                <tr>
+                    <td>Website Template</td>
+                    <td>jane_smith@yahoo.com</td>
+                    <td>1</td>
+                    <td>$20.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="withdraw-button">Withdraw Funds</button>
+    </div>
+</body>
+</html>
