@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hi.css">
+    <title>Cart</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            padding: 10px 0;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Cart Section Styling */
+        #cart {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #cart h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        #cart-items {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        #cart-items li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        #cart-items li:hover {
+            transform: scale(1.02);
+        }
+
+        #cart-items h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        #cart-items p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        #cart-items .remove-btn {
+            background-color: #ff5733;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #cart-items .remove-btn:hover {
+            background-color: #e74c3c;
+        }
+
+        #cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        #checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        #checkout-btn:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="hi.html">Home</a></li>
+                <li><a href="Aboutus.html">About Us</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="cart">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <div id="cart-total">
+            <h3>Total: $0.00</h3>
+        </div>
+        <button id="checkout-btn">Proceed to Checkout</button>
+    </section>
+
+    <script>
+        // Function to update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('li');
+                cartItem.innerHTML = `
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>${item.price}</p>
+                    </div>
+                    <button class="remove-btn" data-index="${index}">Remove</button>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            updateCartTotal();
+        }
+
+        // Function to update cart total
+        function updateCartTotal() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const total = cart.reduce((acc, item) => acc + parseFloat(item.price.replace('$', '')), 0);
+            document.getElementById('cart-total').innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+        }
+
+        // Function to remove item from cart
+        function removeItemFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        // Function to add item to cart from other pages
+        function addProductToCart(name, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+
+        // Add event listener to checkout button
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            window.location.href = 'checkout.html';
+        });
+
+        // Add event listener to remove buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-btn')) {
+                const index = e.target.dataset.index;
+                removeItemFromCart(index);
+            }
+        });
+
+        // Update cart display on page load
+        document.addEventListener('DOMContentLoaded', updateCartDisplay);
+    </script>
+</body>
+</html>

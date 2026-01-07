@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Dev Tools</title>
+    <style>
+        /* Global Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0d3c9d, #0a2472);
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Landing Section Styling */
+        .landing {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Animated Background Elements */
+        .landing::before, .landing::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        .landing::before {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .landing::after {
+            bottom: 15%;
+            right: 25%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Content Styling */
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .content h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: #a5ff55;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #c7d6f5;
+        }
+
+        /* Call-to-Action Buttons */
+        .cta {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 10px;
+            background: #a5ff55;
+            color: #0a2472;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            background: #8edb47;
+        }
+
+        .cta:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <section class="landing">
+        <div class="content">
+            <h1>Welcome to ROBOWARE DEVELOPER OPTION</h1>
+            <p>A place where you can unleash your fullest potential and still get paid!</p>
+            <a href="explaindevtools.html" class="cta">SIGN UP</a>
+            <a href="signindevtools.html" class="cta">SIGN IN</a>
+        </div>
+    </section>
+</body>
+</html>
