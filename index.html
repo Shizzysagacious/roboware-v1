@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roboware - Build Your Vision</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #00c6ff;
+            --secondary-color: #1e1e2f;
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #ff9800;
+            --card-background: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--background-color), #000000);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: var(--secondary-color);
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin: 0;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 60px;
+            background: linear-gradient(135deg, #000, var(--primary-color));
+            color: var(--text-color);
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .hero button:hover {
+            background: var(--primary-color);
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .about, .features, .success-stories, .how-it-works, .faq, .pricing, .contact {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .section p {
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .features, .pricing, .success-stories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item, .pricing-plan, .success-story {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-item img, .success-story img, .pricing-plan img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .how-it-works .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .how-it-works .step img {
+            width: 100px;
+            margin-right: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.5em;
+            color: var(--accent-color);
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Roboware</h1>
+    </header>
+
+    <section class="hero">
+        <h2>Build Your Vision with Roboware</h2>
+        <p>Join a global community of innovators transforming ideas into reality.</p>
+        <button onclick="location.href='sign.html';">Get Started</button>
+    </section>
+
+    <section class="about section">
+        <h2>About Roboware</h2>
+        <p>Roboware empowers creators to build, share, and collaborate on cutting-edge projects. From robotics to AI, our platform equips you with the tools you need to succeed.</p>
+    </section>
+
+    <section class="features section">
+        <h2>Core Features</h2>
+        <div class="feature-item">
+            <img src="images/feature1.jpg" alt="Feature 1">
+            <p>Access top-notch design and engineering tools for your projects.</p>
+        </div>
+        <div class="feature-item">
+            <img src="images/feature2.jpg" alt="Feature 2">
+            <p>Join a vibrant community of builders and innovators.</p>
+        </div>
+        <div class="feature-item">
+            <img src="images/feature3.jpg" alt="Feature 3">
+            <p>Collaborate with experts and get guidance on your ideas.</p>
+        </div>
+    </section>
+
+    <section class="success-stories section">
+        <h2>Success Stories</h2>
+        <div class="success-story">
+            <img src="images/project1.jpg" alt="Project 1">
+            <p><strong>John Doe:</strong> Built an autonomous delivery robot using Roboware tools.</p>
+        </div>
+        <div class="success-story">
+            <img src="images/project2.jpg" alt="Project 2">
+            <p><strong>Jane Smith:</strong> Developed an AI-powered smart home assistant.</p>
+        </div>
+    </section>
+
+    <section class="how-it-works section">
+        <h2>How It Works</h2>
+        <div class="step">
+            <img src="images/step1.png" alt="Step 1">
+            <p>Sign up and explore the tools and community.</p>
+        </div>
+        <div class="step">
+            <img src="images/step2.png" alt="Step 2">
+            <p>Collaborate with others or start building your idea.</p>
+        </div>
+        <div class="step">
+            <img src="images/step3.png" alt="Step 3">
+            <p>Share your success story with the world!</p>
+        </div>
+    </section>
+
+    <section class="pricing section">
+        <h2>Pricing Plans</h2>
+        <div class="pricing-plan">
+            <h3>Free Plan</h3>
+            <p>Access basic tools and resources.</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Pro Plan</h3>
+            <p>Unlock advanced features for professionals.</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Enterprise Plan</h3>
+            <p>Custom solutions for teams and organizations.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Roboware. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
