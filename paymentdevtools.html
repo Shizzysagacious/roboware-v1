@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Dev Tools</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .landing {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .landing h1 {
+            font-size: 2.8rem;
+            color: #00d8ff;
+            margin-bottom: 15px;
+        }
+
+        .landing p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.6;
+            color: #cfcfcf;
+        }
+
+        .cta {
+            display: inline-block;
+            margin: 10px 10px;
+            padding: 15px 30px;
+            background: #00d8ff;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 216, 255, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 216, 255, 0.6);
+        }
+
+        /* Futuristic Animation */
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #00d8ff, 0 0 10px #00d8ff, 0 0 20px #00d8ff;
+            }
+            50% {
+                text-shadow: 0 0 15px #00d8ff, 0 0 30px #00d8ff, 0 0 50px #00d8ff;
+            }
+            100% {
+                text-shadow: 0 0 5px #00d8ff, 0 0 10px #00d8ff, 0 0 20px #00d8ff;
+            }
+        }
+
+        h1 {
+            animation: glow 2s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .landing h1 {
+                font-size: 2rem;
+            }
+
+            .landing p {
+                font-size: 1rem;
+            }
+
+            .cta {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="landing">
+        <div class="content">
+            <h1>Proceed to Payment</h1>
+            <p>You’re one step closer to becoming a Roboware Developer. Congratulations in advance!</p>
+
+            <!-- PayPal Button -->
+            <a 
+                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YOUR_PAYPAL_BUTTON_ID" 
+                class="cta"
+                target="_blank"
+            >
+                Pay with PayPal
+            </a>
+
+            <!-- Bank Transfer Button -->
+            <a href="banktransferinfo.html" class="cta">Pay with Bank Transfer</a>
+        </div>
+    </section>
+</body>
+</html>

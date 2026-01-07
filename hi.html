@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roboware Store - Robotics and Electronics Products</title>
+    <meta name="description" content="Roboware Store offers a wide range of robotics and electronics products, including robotic arms, drones, and more.">
+    <meta name="keywords" content="robotics, electronics, robotic arms, drones, robotics kits">
+    <meta name="author" content="Roboware Store">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="(link unavailable)">
+    <meta property="og:title" content="Roboware Store - Robotics and Electronics Products">
+    <meta property="og:description" content="Roboware Store offers a wide range of robotics and electronics products, including robotic arms, drones, and more.">
+    <meta property="og:image" content="(image link unavailable)">
+    <meta property="og:url" content="(link unavailable)">
+    <meta property="og:type" content="website">
+    <title>Home page - Roboware Software</title>
+    <link rel="icon" href="Roboware Software.jpg" type="image/jpg">
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.toggle-menu {
+    font-size: 24px;
+    padding: 10px;
+    border: none;
+    background-color: #4a90e2;
+    color: #fff;
+    cursor: pointer;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    right: 0;
+    top: 60px;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 8px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #4a90e2;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #337ab7;
+}
+
+.product-list {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(33.333% - 40px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.product:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.product h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.product p {
+    color: #555;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.view-tools, .add-to-cart {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.view-tools:hover, .add-to-cart:hover {
+    background-color: #337ab7;
+}
+
+#cart {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#cart h2 {
+    color: #4a90e2;
+}
+
+#cart-items div {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#cart-total h3 {
+    color: #333;
+}
+
+#checkout-btn {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#checkout-btn:hover {
+    background-color: #337ab7;
+}
+
+.menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .product {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        width: 100%;
+    }
+}
+#cart.has-items {
+    display: block;
+    }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #4a90e2;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #337ab7;
+    }
+        
+        
+        
+        
+        
+        
+        
+/* Button styling */
+.toggle-menu {
+    font-size: 30px;
+    padding: 15px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+/* When hovering over the button */
+.toggle-menu:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+}
+
+/* Icon styling */
+.icon {
+    font-size: 30px;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+/* When menu is active */
+.menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    right: 0;
+    top: 60px;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* When toggling, show the menu */
+.menu.show {
+    display: block;
+}
+/* Add this to the existing CSS for the logo image */
+.logo {
+    width: 100px; /* Adjust size */
+    height: auto;
+    margin-top: 20px;
+    border-radius: 50%; /* Optional: makes the image round */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product {
+padding: 20px;
+border: 1px solid #ddd;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+}
+
+.product a {
+text-decoration: none;
+color: inherit;
+}
+
+.product img {
+width: 100%;
+height: 150px;
+object-fit: cover;
+border-radius: 10px 10px 0 0;
+}
+
+.product h3 {
+font-weight: bold;
+margin-top: 10px;
+text-align: left;
+}
+
+.product p {
+font-size: 18px;
+color: #666;
+text-align: left;
+}
+
+.button {
+background-color: #4CAF50;
+color: #fff;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.button:hover {
+background-color: #3e8e41;
+}
+
+.add-to-cart, .inquire-about-product {
+background-color: #4CAF50;
+color: #fff;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.add-to-cart:hover, .inquire-about-product:hover {
+background-color: #3e8e41;
+}
+.product-link {
+display: block;
+text-decoration: none;
+color: inherit;
+}
+
+/* Chatbot Button */
+#chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#chatbot-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Chatbot Popup */
+#chatbot-popup {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 300px;
+    border: 1px solid #ccc;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+}
+
+#chatbot-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbot-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#chatbot-messages {
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+#chatbot-input-area {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#chatbot-send {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.message {
+    margin: 5px 0;
+}
+
+.message.user {
+    color: blue;
+}
+
+.message.chatgpt {
+    color: green;
+}
+}
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  background-color: #f4f4f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#search-input {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px 0 0 10px;
+}
+
+#search-btn {
+  width: 30%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+}
+
+#search-btn:hover {
+  background-color: #337ab7;
+}
+
+#search-results {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 50%;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+#search-results.show {
+  display: block;
+}
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  background-color: #f4f4f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#search-input {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px 0 0 10px;
+}
+
+#search-btn {
+  width: 30%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+}
+
+#search-btn:hover {
+  background-color: #337ab7;
+}
+
+#search-results {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 50%;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+#search-results.show {
+  display: block;
+}
+
+.description-button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.description-button:hover {
+  background-color: #3e8e41;
+}
+.inquire-about-product {
+  background-color: #ff0049; /* Light red background color */
+  color: #ff4900#ff7300; /* Red text color */
+  border: 1px solid #FF0000; /* Red border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px 20px; /* Add padding for better readability */
+  font-size: 16px; /* Set font size */
+  cursor: pointer; /* Change cursor shape on hover */
+}
+
+.inquire-about-product:hover {
+  background-color: #FFB6B6; /* Lighter red on hover */
+  color: #FFFFFF; /* White text color on hover */
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Roboware Store</h1>
+        <nav>
+            <ul>
+                <li><a href="hi.html">Home</a></li>
+                <li><a href="Aboutus.html">About Us</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br>
+    <button class="toggle-menu" aria-label="Open Menu">
+    <span class="icon">☰</span>
+</button>
+    <div class="menu">
+        <ul>
+            <li><a href="bfproceedingdevtools.html">Developers Tools</a></li>
+            <li><a href="parts-used.html">How to get Components used</a></li>
+            <li><a href="edit_profile.php">Edit profile</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
+       <img src="Roboware Software.jpg" alt="Roboware Logo" class="logo">
+    <section id="products">
+        <h2>Available Products</h2>
+       
+<div class="search-bar">
+  <input type="text" id="search-input" placeholder="Search products...">
+  <button id="search-btn">Search</button>
+  <div id="search-results"></div>
+</div>
+        <div class="product-list">
+
+
+<div class="product" data-product-id="1">
+<a href="description-1.html" class="product-link">
+<img src="small-car.jpg" alt="Remote controlled Car Code">
+<h3>Remote Controlled Car.</h3>
+<p>$9.99</p>
+</a>
+<a href="product-1.html" class="button">Components Used</a>
+<button class="add-to-cart">Add to Cart</button>
+<button class="inquire-about-product">Inquire</button>
+</div>
+  
+  
+<div class="product" data-product-id="2">
+<a href="description-2.html" class="product-link">
+<img src="smart-home.jpg" alt="Smart Home Automation code">
+<h3>Smart Home Automation.</h3>
+<p>$9.99</p>
+</a>
+<a href="product-2.html" class="button">Components Used</a>
+<button class="add-to-cart">Add to Cart</button>
+<button class="inquire-about-product">Inquire</button>
+</div>
+  
+  
+  
+</div>
+<button id="chatbot-button">💬</button>
+<div id="chatbot-popup" style="display: none;">
+    <div id="chatbot-header">
+        <span>Chatbot</span>
+        <button id="chatbot-close">✖</button>
+    </div>
+    <div id="chatbot-messages" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 1;
+    </div>
+    <div id="chatbot-input-area">
+        <input type="text" id="chatbot-input" placeholder="Type a message..." />
+        <button id="chatbot-send">Send</button>
+    </div>
+</div>
+</div>
+</section>
+<section id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div id="cart-total"><h3>Total: $0.00</h3></div>
+    <button id="checkout-btn">Proceed to Cart</button>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const product = button.parentNode;
+            const productName = product.querySelector('h3').textContent;
+            const productPrice = product.querySelector('p').textContent;
+            addProductToCart(productName, productPrice);
+        });
+    });
+
+    // Add functionality to "Proceed to Cart" button
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length > 0) {
+                // Redirect to cart page (e.g., cart.html)
+                window.location.href = 'cart.html';
+            } else {
+                alert('Your cart is empty. Please add some items.');
+            }
+        });
+    }
+
+    // Initialize cart display
+    updateCartDisplay();
+});
+    // Function to add product to cart
+    function addProductToCart(name, price) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name, price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+    }
+
+    // Function to update cart display
+    function updateCartDisplay() {
+        const cartItems = document.getElementById('cart-items');
+        if (!cartItems) return; // Avoid errors if element is missing
+
+        cartItems.innerHTML = '';
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.forEach((item) => {
+            const cartItem = document.createElement('div');
+            cartItem.innerHTML = `
+                <h3>${item.name}</h3>
+                <p>${item.price}</p>
+            `;
+            cartItems.appendChild(cartItem);
+        });
+        updateCartTotal();
+    }
+
+    // Function to update cart total
+    function updateCartTotal() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = cart.reduce((acc, item) => acc + parseFloat(item.price.replace('$', '')), 0);
+        const cartTotal = document.getElementById('cart-total');
+        if (cartTotal) {
+            cartTotal.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+        }
+    }
+
+
+    // Toggle menu visibility
+    const toggleMenuBtn = document.querySelector('.toggle-menu');
+    const menu = document.querySelector('.menu');
+    if (toggleMenuBtn && menu) {
+        toggleMenuBtn.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    }
+
+
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const searchResults = document.getElementById('search-results');
+const products = document.querySelectorAll('.product');
+
+// Function to handle search
+function handleSearch() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+
+    // Filter products based on search term
+    const filteredProducts = Array.from(products).filter(product => {
+        const productName = product.querySelector('h3')?.textContent.toLowerCase();
+        return productName.includes(searchTerm);
+    });
+
+    // Display search results
+    if (filteredProducts.length > 0) {
+        searchResults.innerHTML = filteredProducts.map(product => `
+            <div class="search-result">
+                <img src="${product.querySelector('img').src}" alt="${product.querySelector('img').alt}">
+                <h3>${product.querySelector('h3').textContent}</h3>
+                <p>${product.querySelector('p').textContent}</p>
+                <a href="${product.querySelector('a').href}" class="button">Components Used</a>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        `).join('');
+        searchResults.classList.add('show');
+    } else {
+        searchResults.innerHTML = '<p>No products found.</p>';
+        searchResults.classList.add('show');
+    }
+}
+
+// Add event listener to search button
+searchBtn.addEventListener('click', handleSearch);
+
+// Add event listener to search input for "Enter" key
+searchInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
+});
+
+// Clear results when the input is empty
+searchInput.addEventListener('input', () => {
+    if (searchInput.value.trim() === '') {
+        searchResults.innerHTML = '';
+        searchResults.classList.remove('show');
+    }
+});
+
+
+// Get all "Inquire" buttons
+const inquireButtons = document.querySelectorAll('.inquire-about-product');
+
+// Add event listener to each "Inquire" button
+inquireButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Get the product ID from the parent element
+    const productId = button.parentNode.dataset.productId;
+    
+    // Show the chatbot popup
+    const chatbotPopup = document.getElementById("chatbot-popup");
+    chatbotPopup.style.display = "block";
+    
+    // Send a message to the chatbot with the product ID
+    const chatbotInput = document.getElementById('chatbot-input');
+    chatbotInput.value = `I'd like to inquire about product ${productId}.`;
+    
+    // Trigger the chatbot to respond
+    const chatbotSend = document.getElementById('chatbot-send');
+    chatbotSend.click();
+  });
+});
+
+// Function to handle chatbot responses
+function getChatbotResponse(userMessage) {
+    if (localStorage.getItem('hasSubscribed') === 'true') {
+        // User is subscribed, provide answer or use API for dynamic responses
+        return `Your inquiry about ${userMessage.match(/product (\d+)/)[1] || 'this product'}: Here's the information you requested...`;
+    } else {
+        // User not subscribed, prompt for subscription
+        return "You need to subscribe to access this information. <br><br><a href='profile.html' class='button'>Subscribe Now</a>";
+    }
+}
+
+    
+       const chatbotButton = document.getElementById("chatbot-button");
+const chatbotPopup = document.getElementById("chatbot-popup");
+const chatbotClose = document.getElementById("chatbot-close");
+const chatbotSend = document.getElementById("chatbot-send");
+const chatbotInput = document.getElementById("chatbot-input");
+const chatbotMessages = document.getElementById("chatbot-messages");
+
+// Toggle chatbot popup visibility
+if (chatbotButton && chatbotPopup) {
+    chatbotButton.addEventListener("click", () => {
+        chatbotPopup.style.display = "block";
+    });
+
+    chatbotClose.addEventListener("click", () => {
+        chatbotPopup.style.display = "none";
+    });
+}
+
+// Function to add a message to the chatbot
+function addMessage(sender, message) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = `chatbot-message ${sender}`;
+    messageDiv.innerHTML = message; // Use innerHTML to allow HTML in messages
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Auto-scroll
+}
+
+// Handle sending messages
+if (chatbotSend && chatbotInput) {
+    chatbotSend.addEventListener("click", async () => {
+        const userMessage = chatbotInput.value.trim();
+        if (userMessage) {
+            addMessage("user", userMessage); // Add user message
+            chatbotInput.value = ""; // Clear input
+            const chatbotResponse = getChatbotResponse(userMessage); // Get bot response
+            addMessage("bot", chatbotResponse); // Add bot response with HTML
+        }
+    });
+
+    chatbotInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            chatbotSend.click(); // Simulate click on "Send" button
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbotButton = document.getElementById("chatbot-button");
+    const chatbotPopup = document.getElementById("chatbot-popup");
+    const chatbotClose = document.getElementById("chatbot-close");
+    const chatbotSend = document.getElementById("chatbot-send");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+
+    // Toggle chatbot popup visibility
+    if (chatbotButton && chatbotPopup) {
+        chatbotButton.addEventListener("click", () => {
+            chatbotPopup.style.display = "block";
+        });
+
+        chatbotClose.addEventListener("click", () => {
+            chatbotPopup.style.display = "none";
+        });
+    }
+
+    // Function to add a message to the chatbot
+    function addMessage(sender, message) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add('chatbot-message', sender);
+        messageDiv.innerHTML = message; // Use innerHTML to allow HTML in messages
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Auto-scroll
+    }
+
+    // Function to fetch chatbot response from server
+    async function getChatbotResponse(userMessage, csrfToken) {
+        try {
+            const response = await fetch('chatbot_response.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRF-TOKEN': csrfToken // CSRF token for security
+                },
+                body: `message=${encodeURIComponent(userMessage)}&csrf_token=${encodeURIComponent(csrfToken)}`
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                return data.message;
+            } else {
+                // If not subscribed or other errors
+                if (localStorage.getItem('hasSubscribed') !== 'true') {
+                    return "You need to subscribe to access this information. <br><br><a href='profile.html' class='button'>Subscribe Now</a>";
+                }
+                return "Error: " + data.message;
+            }
+        } catch (error) {
+            console.error('Error fetching chatbot response:', error);
+            return "An error occurred while fetching data. Please try again later.";
+        }
+    }
+
+    // Handle sending messages
+    if (chatbotSend && chatbotInput) {
+        chatbotSend.addEventListener("click", async () => {
+            const userMessage = chatbotInput.value.trim();
+            if (userMessage) {
+                addMessage("user", userMessage); // Add user message
+                chatbotInput.value = ""; // Clear input
+
+                // Assuming CSRF token is set in a hidden input or localStorage
+                const csrfToken = document.querySelector('input[name="csrf_token"]').value || localStorage.getItem('csrf_token');
+                
+                if (!csrfToken) {
+                    addMessage("bot", "CSRF token missing. Please reload the page.");
+                    return;
+                }
+
+                const chatbotResponse = await getChatbotResponse(userMessage, csrfToken);
+                addMessage("bot", chatbotResponse); // Add bot response with HTML
+            }
+        });
+
+        chatbotInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission if in a form
+                chatbotSend.click(); // Simulate click on "Send" button
+            }
+        });
+    }
+
+    // Handle product inquiry buttons
+    const inquireButtons = document.querySelectorAll('.inquire-about-product');
+    inquireButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.closest('.product').getAttribute('data-product-id');
+            chatbotPopup.style.display = "block";
+            chatbotInput.value = `I'd like to inquire about product ${productId}.`;
+            chatbotSend.click();
+        });
+    });
+});
+</script>
+</body>
+</html>
