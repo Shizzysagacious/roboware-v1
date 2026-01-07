@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2f;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #2e2e44;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #ffd700;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .highlight {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .agree {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .agree label {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-left: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 40px;
+            background: #4CAF50;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+
+        .benefits-section {
+            margin-top: 20px;
+            background: #383850;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .benefits-section ul {
+            list-style-type: square;
+            margin: 15px 0;
+        }
+
+        .benefits-section ul li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Terms and Conditions</h1>
+        <div class="terms">
+            <h2>1. Why Pay $10?</h2>
+            <p>The $10 fee is a one-time investment that grants you access to the platform's <span class="highlight">premium tools and resources</span>, enabling you to maximize your earnings and build your brand effectively.</p>
+
+            <h2>2. Benefits of Joining</h2>
+            <div class="benefits-section">
+                <ul>
+                    <li>Access to a <span class="highlight">global marketplace</span> for your products.</li>
+                    <li>Tools and resources to streamline your development process.</li>
+                    <li>Opportunities to collaborate with a community of innovators.</li>
+                    <li>Revenue directly from your projects without intermediaries.</li>
+                </ul>
+            </div>
+
+            <h2>3. Terms and Conditions</h2>
+            <p><strong>Acceptance of Terms:</strong> By using this platform, you agree to abide by these terms and conditions. If you do not agree, please refrain from using the platform.</p>
+
+            <p><strong>Changes to Terms:</strong> The platform reserves the right to modify these terms at any time. It is your responsibility to review them regularly.</p>
+
+            <p><strong>User Responsibilities:</strong> Users are responsible for ensuring the accuracy of all information provided during registration. Misuse of the platform will result in account suspension.</p>
+
+            <p><strong>Intellectual Property:</strong> All content on the platform, including text, images, and code, remains the property of Roboware. Unauthorized use is strictly prohibited.</p>
+
+            <p><strong>Payment Terms:</strong> A one-time $10 payment grants access to the platform. Additional charges may apply for premium features, as outlined in separate agreements.</p>
+
+            <p><strong>Refund Policy:</strong> Payments are final and non-refundable except in cases outlined in the refund policy.</p>
+
+            <p><strong>Liability Limitation:</strong> The platform is not responsible for any damages resulting from the use of its services, including direct, indirect, or consequential damages.</p>
+
+            <p><strong>Termination:</strong> We reserve the right to terminate accounts without notice for violations of these terms.</p>
+
+            <p><strong>Third-Party Services:</strong> The platform may integrate third-party services. We are not liable for issues arising from their use.</p>
+
+            <p><strong>Dispute Resolution:</strong> Disputes will be resolved under the governing laws of Nigeria.</p>
+        </div>
+
+        <div class="agree">
+            <input type="radio" id="agree" name="terms">
+            <label for="agree">I agree to the Terms and Conditions</label>
+        </div>
+
+        <p class="error" id="error-message">You must agree to the Terms and Conditions to proceed.</p>
+
+        <button class="submit-btn" id="submit-btn">Proceed</button>
+    </div>
+
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function () {
+            const agree = document.getElementById('agree').checked;
+            const errorMessage = document.getElementById('error-message');
+            if (!agree) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                alert("Thank you for agreeing to the Terms and Conditions.");
+                // Redirect to the next page or perform any desired action
+                window.location.href = "highlightdevtools.html";
+            }
+        });
+    </script>
+</body>
+</html>

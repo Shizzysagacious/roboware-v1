@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Car Code</title>
+<style>
+body {
+font-family: Inter, sans-serif;
+background-color: #f9f9f9;
+margin: 0;
+padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 24px;
+    color: #333;
+}
+
+.code-snippet {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: Monaco, monospace;
+    color: #007bff;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+.instructions {
+    margin-top: 20px;
+}
+
+ol {
+    list-style: decimal inside;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #666;
+}
+
+.activate-chatbot-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.activate-chatbot-button:hover {
+    background-color: #0056b3;
+}
+
+.info {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+</style>
+
+</head>
+<body>
+<div class="container">
+<h1>Radio transmitter Remote Controlled Car Code</h1>
+<p>Congratulations on purchasing Product ID 1! Below is your exclusive Remote control Car code:</p>
+<pre class="code-snippet">
+<code>
+const int motor1Pin1 = 2;
+const int motor1Pin2 = 3;
+const int motor2Pin1 = 4;
+const int motor2Pin2 = 5;
+const int ultrasonicTrigPin = 6;
+const int ultrasonicEchoPin = 7;
+const int speakerPin = 8;
+
+int motor1Speed = 0;
+int motor2Speed = 0;
+int ultrasonicDistance = 0;
+
+void setup() {
+    pinMode(motor1Pin1, OUTPUT);
+    pinMode(motor1Pin2, OUTPUT);
+    pinMode(motor2Pin1, OUTPUT);
+    pinMode(motor2Pin2, OUTPUT);
+    pinMode(ultrasonicTrigPin, OUTPUT);
+    pinMode(ultrasonicEchoPin, INPUT);
+    pinMode(speakerPin, OUTPUT);
+
+    Serial.begin(9600);
+}
+
+void loop() {
+    ultrasonicDistance = readUltrasonicDistance();
+
+    if (ultrasonicDistance < 20) {
+        playAlarmingSound();
+    }
+
+    int signal = readRemoteControllerSignal();
+
+    if (signal == 1) {
+        motor1Speed = 255;
+        motor2Speed = 255;
+    } else if (signal == 2) {
+        motor1Speed = -255;
+        motor2Speed = -255;
+    } else if (signal == 3) {
+        motor1Speed = 255;
+        motor2Speed = -255;
+    } else if (signal == 4) {
+        motor1Speed = -255;
+        motor2Speed = 255;
+    }
+
+    setMotorSpeeds(motor1Speed, motor2Speed);
+    delay(50);
+}
+
+int readUltrasonicDistance() {
+    digitalWrite(ultrasonicTrigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(ultrasonicTrigPin, LOW);
+    int distance = pulseIn(ultrasonicEchoPin, HIGH) * 0.034 / 2;
+    return distance;
+}
+
+void playAlarmingSound() {
+    tone(speakerPin, 1000, 500);
+    delay(500);
+}
+
+int readRemoteControllerSignal() {
+    return 1; // Placeholder for actual signal reading
+}
+
+void setMotorSpeeds(int motor1Speed, int motor2Speed) {
+    analogWrite(motor1Pin1, motor1Speed > 0 ? motor1Speed : 0);
+    analogWrite(motor1Pin2, motor1Speed < 0 ? -motor1Speed : 0);
+    analogWrite(motor2Pin1, motor2Speed > 0 ? motor2Speed : 0);
+    analogWrite(motor2Pin2, motor2Speed < 0 ? -motor2Speed : 0);
+}
+</code>
+</pre>
+
+<p>
+<button onclick="copyCode()">Copy Code</button>
+</p>
+
+<h2>Remote Controller Code</h2>
+<p>This code is for the Remote Controller Arduino board:</p>
+<pre class="code-snippet">
+<code>
+#include <SPI.h>
+#include <RF24.h>
+
+const int CE_PIN = 9;
+const int CSN_PIN = 10;
+
+RF24 radio(CE_PIN, CSN_PIN);
+
+const byte address[] = {0x00, 0x00, 0x00, 0x00, 0x01};
+
+void setup() {
+    radio.begin();
+    radio.setPALevel(RF24_PA_LOW);
+    radio.openWritingPipe(address);
+}
+
+void loop() {
+    const char signal[] = {1};
+    radio.write(signal, sizeof(signal));
+    delay(50);
+}
+</code>
+</pre>
+<p>
+<button onclick="copyCode()">Copy Code</button>
+</p>
+<p class="instructions">
+<ol>
+<li>Copy the code above.</li>
+<li>Access your Advanced Chatbot in your profile.</li>
+<li>Activate the chatbot using the code.</li>
+</ol>
+</p>
+<h1>Activate the Chatbot</h1>
+<p>Click the button below to activate the chatbot. Once activated, visit Page 2 to use it.</p>
+<button id="activateChatbot" class="activate-chatbot-button" onclick="activateChatbot()">Activate Chatbot</button>
+<p class="info" id="statusMessage"></p>
+<h2>Wiring Diagrams</h2>
+<p>Here are the wiring diagrams for your project:</p>
+<img src="wiring-diagram.png" alt="Wiring Diagram">
+<h2>Connecting Components</h2>
+<p>Follow these steps to connect the components:</p>
+<ol>
+<li>Connect the LED to pin 13 on the Arduino board.</li>
+<li>Connect the resistor to the LED and the Arduino board.</li>
+</ol>
+<h2>3D Printing</h2>
+<p>To 3D print the required components, follow these steps:</p>
+<ol>
+<li>Download the 3D printing files from our <a href="here.html">Here</a></li>
+<li>Use a 3D printing software to prepare the files for printing.</li>
+<li>Print the components using a 3D printer.</li>
+</ol>
+</div>
+<script>
+function copyCode() {
+    navigator.clipboard.writeText(document.querySelector('pre code').innerText);
+    alert("Code copied to clipboard!");
+}
+
+function activateChatbot() {
+    localStorage.setItem('chatbotActivated', 'true');
+    const startTime = new Date().getTime();
+    localStorage.setItem('chatbotStartTime', startTime);
+    const expirationTime = startTime + (48 * 60 * 60 * 1000); // 48 hours in milliseconds
+    localStorage.setItem('chatbotEndTime', expirationTime);
+    
+    const statusMessage = document.getElementById('statusMessage');
+    statusMessage.textContent = 'Chatbot activated! You can now go to Page 2 to use it for 48 hours.';
+    statusMessage.style.color = 'green';
+}
+</script>
+</body>
+</html>

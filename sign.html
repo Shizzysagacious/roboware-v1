@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h2 {
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    form {
+      width: 80%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    
+    p {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    a {
+      text-decoration: none;
+      color: #4CAF50;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    .social-login-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .social-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .google-btn {
+      background-color: #db4437;
+    }
+    
+    .google-btn:hover {
+      background-color: #c1351d;
+    }
+    
+    .x-btn {
+      background-color: #1DA1F2;
+    }
+    
+    .x-btn:hover {
+      background-color: #1A91DA;
+    }
+    
+    #password-strength-status {
+      position: relative;
+      width: 200px;
+      height: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+    }
+    
+    #password-strength-status .meter-fill {
+      height: 100%;
+      background-color: #4CAF50;
+      transition: width 0.5s ease-in-out;
+      width: 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Sign Up</h2>
+  <form action="sign.php" method="post" id="signup-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required onkeyup="checkPasswordStrength()">
+    <div id="password-strength-status">
+      <div class="meter-fill"></div>
+    </div>
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" required>
+    <input type="submit" value="Sign Up">
+  </form>
+  <div id="loading-spinner" style="display:none; text-align:center; margin-top: 20px;">Loading...</div>
+  <p>Already have an account? <a href="log.html">Log In</a></p>
+  <!-- Social Media Login Buttons -->
+  <div class="social-login-buttons">
+    <!-- Google Sign-In Button -->
+    <div class="social-button google-btn" onclick="onGoogleSignIn()">
+      <i class="fab fa-google"></i> Sign Up with Google
+    </div>
+    
+
+<!-- X (formerly Twitter) Sign-In Button -->
+<div class="social-button x-btn" onclick="onXSignIn()">
+  <i class="fab fa-twitter"></i> Sign Up with X
+</div>
+
+</div>
+
+<script src="(link unavailable)" async defer></script>
+<script src="(link unavailable)" crossorigin="anonymous"></script>
+<script>
+// Add event listener to form submission
+document.getElementById('signup-form').addEventListener('submit', function(e) {
+var password = document.getElementById('password').value;
+var confirmPassword = document.getElementById('confirm_password').value;
+var email = document.getElementById('email').value;
+var username = document.getElementById('username').value;
+
+ // Validate email format
+  var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address.');
+    e.preventDefault();
+    return false;
+  }
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    alert('Passwords do not match.');
+    e.preventDefault();
+    return false;
+  }
+
+  // Show loading spinner
+  document.getElementById('loading-spinner').style.display = 'block';
+});
+
+// Password strength checker
+function checkPasswordStrength() {
+  var password = document.getElementById('password').value;
+  var strength = 0;
+
+  if (password.length >= 8) strength += 1;
+  if (password.match(/[A-Z]/)) strength += 1;
+  if (password.match(/[0-9]/)) strength += 1;
+  if (password.match(/[\W_]/)) strength += 1;
+
+  var meterFill = document.querySelector('#password-strength-status .meter-fill');
+  var width = (strength / 4) * 100;
+
+  meterFill.style.width = `${width}%`;
+
+  if (width < 25) {
+    meterFill.style.background = 'red';
+  } else if (width < 50) {
+    meterFill.style.background = 'orange';
+  } else if (width < 75) {
+    meterFill.style.background = 'yellow';
+  } else {
+    meterFill.style.background = 'green';
+  }
+}
+
+// Google Sign-In API
+function onGoogleSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log("ID: " + profile.getId());
+  console.log("Name: " + profile.getName());
+  console.log("Image URL: " + profile.getImageUrl());
+  console.log("Email: " + profile.getEmail());
+  // Redirect or take actions as necessary
+}
+
+function startApp() {
+  gapi.load('auth2', function() {
+    gapi.auth2.init({
+      client_id: 'YOUR_GOOGLE_CLIENT_ID'
+    });
+  });
+}
+
+startApp();
+
+// X (formerly Twitter) Login logic (dummy function, replace with actual OAuth integration)
+function onXSignIn() {
+  alert('Redirecting to X (Twitter) login...');
+  // Add OAuth or redirect logic here
+}
+
+</script>
+</body>
+</html>

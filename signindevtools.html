@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Roboware</title>
+    <style>
+        /* Global Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0d3c9d, #0a2472, #070d59);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Form Container */
+        .signin-form {
+            width: 350px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Animated Circles */
+        .signin-form::before, .signin-form::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .signin-form::before {
+            top: -75px;
+            left: -75px;
+            animation-delay: 0s;
+        }
+
+        .signin-form::after {
+            bottom: -75px;
+            right: -75px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0);
+            }
+            50% {
+                transform: translate(10px, -10px);
+            }
+        }
+
+        /* Form Elements */
+        h2 {
+            margin: 0 0 30px;
+            font-size: 2rem;
+            color: #a5ff55;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #a5ff55;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        input[type="email"]:focus, input[type="password"]:focus {
+            border-color: #8edb47;
+            transform: scale(1.02);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: linear-gradient(90deg, #a5ff55, #8edb47);
+            color: #0a2472;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #8edb47, #a5ff55);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+
+        .forgot-password {
+            display: block;
+            margin-top: 20px;
+            color: #c7d6f5;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .forgot-password:hover {
+            color: #a5ff55;
+            transform: scale(1.05);
+        }
+
+        /* Glow Animation */
+        input[type="email"]:focus, input[type="password"]:focus, .submit-btn:hover {
+            box-shadow: 0 0 10px #a5ff55, 0 0 20px #8edb47;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 400px) {
+            .signin-form {
+                width: 90%;
+                padding: 30px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signin-form">
+        <h2>Sign In</h2>
+        <form action="login.php" method="post">
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+        <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
+    </div>
+</body>
+</html>

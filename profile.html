@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: #333;
+            color: #fff;
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #sidebar.active {
+            transform: translateX(0);
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        #sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #sidebar ul li:hover {
+            background: #444;
+        }
+
+        #sidebar-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        main {
+            margin: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #chatbotContainer {
+            display: none; /* Initially hidden */
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 0 auto;
+        }
+
+        .chatbot-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .chatbot-messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .info {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="sidebar-toggle">☰</button>
+
+    <div id="sidebar">
+        <ul>
+            <li><a href="hi.html">Home</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="tasks.php">Tasks</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="Aboutus.html">About Us</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <h1>Welcome to Roboware</h1>
+    </header>
+
+    <main>
+        <h2>Profile Details</h2>
+        <?php 
+        session_start();
+        require_once 'config.php';
+        
+        if (isset($_SESSION['user_id'])) {
+            $stmt = $conn->prepare("SELECT first_name, last_name, email, points, user_level FROM users WHERE id = ?");
+            $stmt->bind_param("i", $_SESSION['user_id']);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+
+            if ($user) {
+                echo "<p><strong>Name:</strong> " . htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) . "</p>";
+                echo "<p><strong>Email:</strong> " . htmlspecialchars($user['email']) . "</p>";
+                echo "<p><strong>Points:</strong> " . htmlspecialchars($user['points'] ?? 0) . "</p>";
+                echo "<p><strong>Level:</strong> " . htmlspecialchars($user['user_level'] ?? 'Beginner') . "</p>";
+            } else {
+                echo "<p>User details not found.</p>";
+            }
+            $stmt->close();
+        } else {
+            echo "<p>Please log in to view your profile.</p>";
+        }
+        ?>
+
+        <h2>Tasks</h2>
+        <p>Complete tasks to earn XP and rewards!</p>
+        <a href="tasks.php" class="btn">View Tasks</a>
+
+        <h2>Your Purchases</h2>
+        <?php 
+        // Assuming you have a way to fetch purchases related to this user
+        $stmt = $conn->prepare("SELECT code_name, purchase_date, id FROM purchases WHERE user_id = ?");
+        $stmt->bind_param("i", $_SESSION['user_id']);
+        $stmt->execute();
+        $result_codes = $stmt->get_result();
+        $stmt->close();
+
+        if ($result_codes->num_rows > 0): ?>
+            <ul>
+                <?php while ($code = $result_codes->fetch_assoc()): ?>
+                    <li>
+                        <?php echo htmlspecialchars($code['code_name']); ?> 
+                        (Purchased on: <?php echo htmlspecialchars($code['purchase_date']); ?>) - 
+                        <a href="download.php?code_id=<?php echo $code['id']; ?>">Download</a>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        <?php else: ?>
+            <p>No purchases yet.</p>
+        <?php endif; ?>
+
+        <h2>Chatbot Access</h2>
+        <?php 
+        $currentTime = time();
+        $expirationTime = isset($_SESSION['chatbot_expiration']) ? $_SESSION['chatbot_expiration'] : 0;
+        
+        if ($currentTime < $expirationTime): ?>
+            <p>Active until: <?php echo date('Y-m-d H:i:s', $expirationTime); ?></p>
+        <?php else: ?>
+            <p>No active access.</p>
+            <div id="subscribeOptions">
+                <h3>Choose your payment method:</h3>
+                <!-- PayPal Subscription Button -->
+                <div id="paypal-button-container"></div>
+                
+                <!-- Bank Transfer Button (This is just a placeholder, real implementation involves backend for security) -->
+                <button class="btn" id="bankTransfer">Pay with Bank Transfer</button>
+            </div>
+        <?php endif; ?>
+
+        <div id="chatbotContainer">
+            <div class="chatbot-header">Chatbot</div>
+            <div class="chatbot-messages" id="chatMessages"></div>
+            <input type="text" id="userInput" placeholder="Type a message..." />
+            <button onclick="sendMessage()">Send</button>
+            <p id="timerDisplay"></p>
+        </div>
+        <p class="info" id="errorMessage" style="display: none;">Chat.</p>
+    </main>
+
+    <footer>
+        <p>© 2024 Roboware. All Rights Reserved.</p>
+    </footer>
+
+    
+    <script>
+        const sidebar = document.getElementById('sidebar');
+const toggleButton = document.getElementById('sidebar-toggle');
+
+toggleButton.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const isActivated = localStorage.getItem('chatbotActivated');
+    const startTime = localStorage.getItem('chatbotStartTime');
+    const endTime = localStorage.getItem('chatbotEndTime');
+
+    if (isActivated === 'true' && startTime && endTime) {
+        const now = new Date().getTime();
+        const expirationTime = parseInt(endTime);
+        
+        if (now < expirationTime) {
+            document.getElementById('chatbotContainer').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            updateTimer(expirationTime);
+        } else {
+            localStorage.removeItem('chatbotActivated');
+            localStorage.removeItem('chatbotStartTime');
+            localStorage.removeItem('chatbotEndTime');
+            document.getElementById('chatbotContainer').style.display = 'none';
+            document.getElementById('errorMessage').textContent = 'Your chatbot access has expired. Please activate it again.';
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    } else {
+        document.getElementById('chatbotContainer').style.display = 'none';
+        document.getElementById('errorMessage').style.display = 'block';
+    }
+});
+
+function updateTimer(endTime) {
+    const now = new Date().getTime();
+    const distance = endTime - now;
+    if (distance > 0) {
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('timerDisplay').textContent = `Time Left: ${hours}h ${minutes}m ${seconds}s`;
+        setTimeout(() => updateTimer(endTime), 1000);
+    } else {
+        localStorage.removeItem('chatbotActivated');
+        localStorage.removeItem('chatbotStartTime');
+        localStorage.removeItem('chatbotEndTime');
+        document.getElementById('chatbotContainer').style.display = 'none';
+        document.getElementById('errorMessage').textContent = 'Your chatbot access has expired. Please activate it again.';
+        document.getElementById('errorMessage').style.display = 'block';
+    }
+}
+
+async function getBotResponse(userInput) {
+    const API_URL = "https://api.x.ai/v1/chat/completions";
+    const headers = {
+        'Authorization': 'Bearer xai-X6yxlwbYTm4zOSYjhypETjvBrsytDLJaCKmiUMaTAFNpWx0YG5S7EkUH7pmM4lCQD373VXhkW4w6Phfu',
+        'Content-Type': 'application/json'
+    };
+
+    const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a chatbot assistant for Roboware."
+                },
+                {
+                    "role": "user",
+                    "content": userInput
+                }
+            ],
+            "model": "grok-beta",
+            "stream": false,
+            "temperature": 0
+        })
+    });
+
+    const result = await response.json();
+    
+    // Check for the existence of choices and its elements
+    if (result.choices && Array.isArray(result.choices) && result.choices.length > 0) {
+        return result.choices[0].message.content || "No response from Grok.";
+    } else {
+        console.error('Unexpected response structure:', result);
+        return "Grok encountered an unexpected issue.";
+    }
+}
+
+async function sendMessage() {
+    const userInput = document.getElementById('userInput').value;
+    if (userInput.trim()) {
+        const messagesDiv = document.getElementById('chatMessages');
+        const userMessage = document.createElement('div');
+        userMessage.textContent = `You: ${userInput}`;
+        messagesDiv.appendChild(userMessage);
+
+        try {
+            const botResponse = await getBotResponse(userInput);
+            const botMessage = document.createElement('div');
+            botMessage.textContent = `Grok: ${botResponse}`;
+            botMessage.style.backgroundColor = '#e6f3e6';
+            messagesDiv.appendChild(botMessage);
+        } catch (error) {
+            console.error('Error fetching bot response:', error);
+            const errorMessage = document.createElement('div');
+            errorMessage.textContent = 'Grok: An error occurred, please try again later.';
+            errorMessage.style.backgroundColor = '#f00';
+            messagesDiv.appendChild(errorMessage);
+        }
+
+        document.getElementById('userInput').value = '';
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+}
+
+document.getElementById('bankTransfer').addEventListener('click', function() {
+    alert('Please transfer $2 to Account Number: XXXX-XXXX at Bank: Example Bank. Once the payment is confirmed, your subscription will be activated.');
+});
+
+function initializePayPal() {
+    if (window.paypal) {
+        paypal.Buttons({
+            createSubscription: function(data, actions) {
+                return fetch('/create-subscription', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({})
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(data) {
+                    return data.id;
+                });
+            },
+            onApprove: function(data, actions) {
+                return fetch('/capture-subscription', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        subscriptionID: data.subscriptionID
+                    })
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(details) {
+                    alert('Thank you for your subscription!');
+                    // Update the UI to reflect the new subscription status
+                    // You might want to redirect here or update the page content
+                    window.location.href = '/profile.php'; // Refresh or redirect to update subscription status
+                });
+            },
+            onError: function(err) {
+                console.error("An error occurred with the PayPal button:", err);
+            }
+        }).render('#paypal-button-container');
+    } else {
+        
+        setTimeout(initializePayPal, 100);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initializePayPal);
+    </script>
+</body>
+</html>

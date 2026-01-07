@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Roboware</title>
+    <meta name="description" content="Customize your Roboware experience through the settings page.">
+    <meta name="keywords" content="Roboware, settings, profile, customization">
+    <meta name="author" content="Roboware">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #00c6ff;
+            --secondary-color: #1e1e2f;
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #ff9800;
+            --neon-border: 3px solid rgba(0, 198, 255, 0.6);
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--background-color), #000000);
+            color: var(--text-color);
+        }
+
+        header {
+            background: var(--secondary-color);
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin: 0;
+            letter-spacing: 1.5px;
+        }
+
+        main {
+            margin: 120px auto;
+            padding: 20px;
+            max-width: 1000px;
+        }
+
+        .settings-container {
+            background: rgba(30, 30, 47, 0.95);
+            border: var(--neon-border);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .settings-container h2 {
+            text-align: center;
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .setting-item:hover {
+            background: rgba(0, 198, 255, 0.2);
+        }
+
+        .setting-title {
+            font-size: 1.5em;
+            color: var(--text-color);
+        }
+
+        .setting-action {
+            font-size: 1.2em;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .setting-action:hover {
+            background: var(--primary-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: var(--text-color);
+            max-width: 500px;
+            box-shadow: var(--shadow);
+        }
+
+        .close-btn {
+            background: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Users Settings</h1>
+    </header>
+
+    <main>
+        <div class="settings-container">
+            <h2>Customize Your Experience</h2>
+
+            <div class="setting-item">
+                <span class="setting-title">Edit Profile</span>
+                <button class="setting-action" onclick="location.href='edit_profile.php';">Go to Profile Editor</button>
+            </div>
+
+            <div class="setting-item">
+                <span class="setting-title">Change Password</span>
+                <button class="setting-action" onclick="location.href='edit_profile.php';">Change Password</button>
+            </div>
+
+            <div class="setting-item">
+                <span class="setting-title">Notification Preferences</span>
+                <button class="setting-action" onclick="openModal('notificationModal');">Edit Notifications</button>
+            </div>
+
+            <div class="setting-item">
+                <span class="setting-title">Privacy Settings</span>
+                <button class="setting-action" onclick="openModal('privacyModal');">Edit Privacy</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="notificationModal" class="modal">
+        <div class="modal-content">
+            <h2>Notification Preferences</h2>
+            <p>Choose how you'd like to receive updates.</p>
+            <label><input type="checkbox"> Email Notifications</label><br>
+            <label><input type="checkbox"> SMS Notifications</label><br>
+            <label><input type="checkbox"> App Push Notifications</label><br>
+            <button class="close-btn" onclick="closeModal('notificationModal');">Close</button>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <h2>Privacy Settings</h2>
+            <p>Control who can see your activity.</p>
+            <label><input type="radio" name="privacy" value="public"> Public</label><br>
+            <label><input type="radio" name="privacy" value="private"> Private</label><br>
+            <label><input type="radio" name="privacy" value="custom"> Custom</label><br>
+            <button class="close-btn" onclick="closeModal('privacyModal');">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Roboware. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
