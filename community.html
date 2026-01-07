@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roboware Community</title>
+    <meta name="description" content="Join the Roboware community to discuss robotics, innovation, and technology.">
+    <meta name="keywords" content="robotics, community, innovation, technology, discussion">
+    <meta name="author" content="Roboware">
+    <!-- Open Graph Metadata -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="your-website-url.com/community.html">
+    <meta property="og:title" content="Roboware Community">
+    <meta property="og:description" content="Join the Roboware community to discuss robotics, innovation, and technology.">
+    <meta property="og:image" content="path-to-your-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="Roboware Software.jpg" type="image/x-icon">
+
+    <!-- Preconnect to improve performance -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Inline for performance but can be external for better caching -->
+    <style>
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #1e1e2f;
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #ff5722;
+            --neon-border: 2px solid rgba(0, 255, 255, 0.4);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--background-color), #000000);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--secondary-color);
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin: 0;
+        }
+
+        #sidebar {
+            position: fixed;
+            left: -250px;
+            top: 80px;
+            width: 250px;
+            height: calc(100vh - 80px);
+            background: rgba(30, 30, 47, 0.95);
+            border-right: var(--neon-border);
+            box-shadow: var(--shadow);
+            transition: left 0.3s ease-in-out;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        #sidebar.active {
+            left: 0;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px;
+            text-align: center;
+        }
+
+        #sidebar ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        #sidebar ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        #sidebar-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        #sidebar-toggle:hover {
+            transform: scale(1.1);
+            background: var(--accent-color);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .thread {
+            background: rgba(255, 255, 255, 0.1);
+            border: var(--neon-border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .thread:hover {
+            transform: translateY(-5px);
+        }
+
+        .thread-title {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .thread-author {
+            color: var(--primary-color);
+            font-size: 1em;
+            margin-top: 5px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--accent-color);
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                left: 0;
+                transform: none;
+                transition: none;
+            }
+
+            #sidebar-toggle {
+                display: none;
+            }
+
+            main {
+                margin-top: 200px; /* Adjust based on sidebar height */
+            }
+        }
+
+        /* Accessibility Enhancements */
+        *:focus {
+            outline: 2px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <button id="sidebar-toggle" aria-label="Toggle Sidebar">☰</button>
+
+    <div id="sidebar" aria-label="Navigation menu">
+        <ul>
+            <li><a href="hi.html">Home</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="tasks.php">Tasks</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <h1>Roboware Community</h1>
+    </header>
+
+    <main>
+        <h2>Threads</h2>
+        <?php
+        session_start();
+        require_once 'config.php';
+
+        // Check if user is logged in
+        if (!isset($_SESSION['user_id'])) {
+            echo "<p>Please <a href='log.html'>log in</a> to participate in discussions.</p>";
+        } else {
+            try {
+                // Fetch threads from the database
+                $stmt = $conn->prepare("SELECT title, content, user_id, created_at, id FROM threads ORDER BY created_at DESC");
+                $stmt->execute();
+                $threads = $stmt->get_result();
+
+                while ($thread = $threads->fetch_assoc()):
+                    // Fetch user name for the thread
+                    $user_stmt = $conn->prepare("SELECT username FROM users WHERE id = ?");
+                    $user_stmt->bind_param("i", $thread['user_id']);
+                    $user_stmt->execute();
+                    $user_result = $user_stmt->get_result();
+                    $user = $user_result->fetch_assoc();
+                ?>
+                    <div class="thread">
+                        <div class="thread-title"><?php echo htmlspecialchars($thread['title']); ?></div>
+                        <div class="thread-author">Posted by <?php echo htmlspecialchars($user['username']); ?></div>
+                        <p><?php echo nl2br(htmlspecialchars($thread['content'])); ?></p>
+                        <form action="post-comment.php" method="post">
+                            <textarea name="comment" placeholder="Add your comment..." rows="4" required></textarea>
+                            <input type="hidden" name="thread_id" value="<?php echo htmlspecialchars($thread['id']); ?>">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                            <button type="submit">Post Comment</button>
+                        </form>
+                    </div>
+                <?php 
+                endwhile;
+            } catch (Exception $e) {
+                echo "An error occurred: " . htmlspecialchars($e->getMessage());
+            }
+        }
+        ?>
+
+        <h2>Create New Thread</h2>
+        <form action="create-thread.php" method="post">
+            <input type="text" name="title" placeholder="Thread Title" required>
+            <textarea name="content" placeholder="Thread Content" rows="5" required></textarea>
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+            <button type="submit">Create Thread</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2024 Roboware. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const toggleButton = document.getElementById("sidebar-toggle");
+
+        toggleButton.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when sidebar is open
+                document.querySelector('main').style.marginLeft = '250px';
+            } else {
+                document.body.style.overflow = 'auto';
+                document.querySelector('main').style.marginLeft = '0';
+            }
+        });
+
+        // Generate CSRF token on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php
+            if (!isset($_SESSION['csrf_token'])) {
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            }
+            ?>
+            // Add any necessary JavaScript for lazy loading, error handling, etc.
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic PayPal Integration</title>
+    <!-- Include PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AYRy_a-V-y9J7AM29eSW5mTH5pxujWqE37j_0ZXfNqTjGu7GyrKj-c_5SZps8X_s1H1afgsLkMD1V3BE&currency=USD"></script>
+</head>
+<body>
+    <h1>Roboware Store Checkout</h1>
+
+    <!-- Product Details -->
+    <p>Product: <span id="product-name">Advanced Robotics Code</span></p>
+    <p>Price: $<span id="product-price">49.99</span></p>
+
+    <!-- PayPal Button Container -->
+    <div id="paypal-button-container"></div>
+
+    <script>
+        const productName = "Advanced Robotics Code"; // Product name
+        const productPrice = 49.99; // Product price
+
+        document.getElementById("product-name").textContent = productName;
+        document.getElementById("product-price").textContent = productPrice;
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: productPrice.toFixed(2) // Dynamically set the price
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Payment success
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+
+                    // Send transaction details to backend
+                    fetch('Checkout.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            product_name: productName,
+                            product_price: productPrice,
+                            payer_name: details.payer.name.given_name,
+                            payer_email: details.payer.email_address
+                        })
+                    }).then(() => {
+                        // Redirect on success
+                        window.location.href = 'payment-successful.html';
+                    }).catch((error) => {
+                        console.error('Error:', error);
+                        alert('Payment recorded but failed to send details to the server.');
+                    });
+                });
+            }
+        }).render('#paypal-button-container'); // Render the PayPal button
+    </script>
+</body>
+</html>
